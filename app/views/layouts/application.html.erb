@@ -5,27 +5,15 @@
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
+  <%= render 'layouts/shim' %>
+  <%= render 'layouts/scripts' %>
 </head>
 <body>
-
-<header class="navbar navbar-fixed-top navbar-inverse">
-  <div class="navbar-inner">
+	<%= render 'layouts/header' %>
     <div class="container">
-      <%= link_to "tique", '#', id: "logo" %>
-      <nav>
-        <ul class="nav pull-right">
-          <li><%= link_to "History",    '#' %></li>
-          <li><%= link_to "Places",    '#' %></li>
-        </ul>
-      </nav>
+      <%= yield %>
+      <%= render 'layouts/footer' %>
     </div>
-  </div>
-</header>
-<div class="container-main">
-  
-<%= yield %>
-
-</div>
 
 </body>
 </html>

@@ -1,2 +1,55 @@
-<h1>D3#home</h1>
-<p>Find me in app/views/d3/home.html.erb</p>
+<div class="center hero-unit">
+  <h1>Welcome to SlamStats</h1>
+
+  <h2>
+    This is the home page for SlamStats basketball analysis.
+  </h2>
+
+</div>
+
+<script type="text/javascript">
+	//Width and height
+	var w = 500;
+	var h = 100;
+
+	var svg = d3.select("body")
+				.append("svg")
+				.attr("width", w)
+				.attr("height", h);
+	var dataset = [ 5, 10, 13, 19, 21, 25, 22, 18, 15, 13, 11, 12, 15, 20, 18, 17, 16, 18, 23, 25 ];
+	var rects = svg.selectAll("rect")
+					.data(dataset)
+					.enter()
+					.append("rect");
+	rects.attr("x", function(d,i) {
+				return i * (w / dataset.length); //Bar width of 20 plus 1 for padding
+			})
+			.attr("y", function(d){
+				return h - ( d * 4); //Height minus data value
+			})
+			.attr("width", 20)
+			.attr("height", function(d){
+				return d * 4; //Data times four!
+			})
+			.attr("fill", function(d) {
+				return "rgb(0, 0," + (d * 10) + ")";
+			});
+
+	svg.selectAll("text")
+		.data(dataset)
+		.enter()
+		.append("text")
+		.text(function(d){
+			return (d)
+		})
+		.attr("x", function(d,i) {
+			return i * (w / dataset.length) + 5;
+		})
+		.attr("y", function(d) {
+			return h - (d * 4) + 15 ;
+		})
+		.attr("font-family", "sans-serif")
+		.attr("font-size", "11px")
+		.attr("fill", "white");
+
+</script>
