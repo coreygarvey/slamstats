@@ -1,5 +1,6 @@
 Slamstats::Application.routes.draw do
-  get "d3/home"
+  match '/blog',    to: 'blog#home',    via: 'get'
+  root 'analysis#home'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,0 +1,59 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: MyString
+  name: MyString
+  fullname: MyString
+  nickname: MyString
+  twitter: MyString
+  born: MyString
+  position: MyString
+  shoots: MyString
+  htft: 1
+  htin: 1
+  weight: 1
+  bmonth: MyString
+  bday: 1
+  byear: 1
+  bcity: MyString
+  bstate: MyString
+  bcountry: MyString
+  hs: MyString
+  hscity: MyString
+  hsstate: MyString
+  college: MyString
+  draftteam: MyString
+  draftround: 1
+  draftroundpick: 1
+  draftoverall: 1
+  draftyear: 1
+  hofyear: 1
+
+two:
+  id: MyString
+  name: MyString
+  fullname: MyString
+  nickname: MyString
+  twitter: MyString
+  born: MyString
+  position: MyString
+  shoots: MyString
+  htft: 1
+  htin: 1
+  weight: 1
+  bmonth: MyString
+  bday: 1
+  byear: 1
+  bcity: MyString
+  bstate: MyString
+  bcountry: MyString
+  hs: MyString
+  hscity: MyString
+  hsstate: MyString
+  college: MyString
+  draftteam: MyString
+  draftround: 1
+  draftroundpick: 1
+  draftoverall: 1
+  draftyear: 1
+  hofyear: 1

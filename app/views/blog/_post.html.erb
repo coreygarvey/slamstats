@@ -1,0 +1,14 @@
+<tr>
+  	<td>
+    	<span><%= link_to company.name, company, 'data-no-turbolink' => true %> - <%= company.entitlements_remaining %> consultatations remaining</span>
+	</td>
+	<td>
+	  <% if current_user.admin? %>
+	    <%= link_to "Delete", company, method: :delete,
+	                                  data: { confirm: "Are you sure you want to delete this company?" } %> |
+	  <% end %>
+      <% if current_user.admin? %>
+        <%= link_to "Edit", edit_company_path(company) %>
+      <% end %>
+  	</td>
+</tr>
