@@ -28,7 +28,6 @@ class CreatePlayers < ActiveRecord::Migration
       t.integer :draftoverall
       t.integer :draftyear
       t.integer :hofyear
-
       t.timestamps
     end
   end
