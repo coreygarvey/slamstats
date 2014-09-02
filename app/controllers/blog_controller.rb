@@ -1,5 +1,6 @@
 class BlogController < ApplicationController
   def home
-    @article = Article.find_by_id(1)
+    @article = Article.order('created_at desc').first
   end
 end
+ 
