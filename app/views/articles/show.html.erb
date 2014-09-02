@@ -2,5 +2,6 @@
 
 <div id="article-container">
 <h1><%= @article.title %></h1>
+<h2><%= @article.created_at.in_time_zone("Pacific Time (US & Canada)").strftime("%m/%d/%Y") %></h2>
 <%= raw(@article.body) %>
 </div>
