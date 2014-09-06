@@ -1,0 +1,97 @@
+<p>SlamStats feels great for a lot of reasons and learning new tools is one of the best. In the <a href="http://www.slamstats.net/articles/3">last post</a> I detailed the tools I used to obtain my data, particularly Nokogiri and Mechanize on Ruby. Although I have more experience with Python, using additional languages helps me build my fundamental computer science knowledge. If I can scrape web pages just as well with Ruby and Python, other languages will not pose an issue. I imagine speaking multiple languages feels quite similar. Data processing and analysis, I believe, is no different. I’m going to be working with <a href="http://www.r-project.org">R</a> because of its popularity and well organized structure, although I hear a lot of great things about Python pandas. At some point I will do work in both, but to start, it will be R.</p>
+
+<p><a href="http://www.rstudio.com">RStudio</a> offers a great IDE (integrated development environment) that includes both a console and visualization section. I predominately use SublimeText when writing scripts and building applications (such as this one) but the nature of data analysis requires quick feedback. RStudio provides users with a huge organizational upgrade from the standard terminal and has become the de facto instrument for analysis in R.</p>
+
+<p>From what I’ve seen, R provides great visualizations that I will frequently include in posts. These visualizations are a huge part of the analytical process. However, when moving my thoughts to the web, I’ll be working heavily with the <a href="http://d3js.org">Javascript D3 library</a>, an aesthetic upgrade from R and unbelievable presentation tool in itself. </p>
+
+<p>Additionally, the book <a href="http://www-bcf.usc.edu/~gareth/ISL/ISLR%20First%20Printing.pdf">An Introduction to Statistical Learning with Applications in R</a> may be the most important resource. A former colleague recommended it and I’ve quickly picked up a number of fundamental ideas of statistics and machine learning. I strongly recommend going through the book and exercises to learn the statistics and how to implement them in R.</p>
+
+<p>To get started, I want to take a look at the data I just scraped and wrote to CSV files to make sure it is in the format I expect and compatible with R. I read the basic and advanced box score data from the CSV files scraped from the web and take a look at the first few lines. There are a few redundant columns between basic and advanced that need to be removed. Also, I’ll begin with the assumption that my numeric variables would be more useful as quantitative (0, 1, 2, etc.) rather than categorical (‘A’, ‘2', ‘C’, etc.) attributes and convert those columns accordingly. Conveniently, for the box score, I have written every game to two files (basic and advanced) with unique game identifiers. The file is large but a few quick filters and aggregations will allow me to analyze individual player and game data. First, all of our box score data columns are listed below:</p>
+
+<table style="width:100%">
+  <tr>
+    <td>playergame</td>
+    <td>PLAYER</td>
+    <td>MP</td>
+    <td>FG</td>
+    <td>FGA</td>
+  </tr>
+  <tr>
+    <td>FG.</td>
+    <td>X3P</td>
+    <td>X3PA</td>
+    <td>X3P.</td>
+    <td>FT</td>
+  </tr>
+  <tr>
+    <td>FTA</td>
+    <td>FT.</td>
+    <td>ORB</td>
+    <td>DRB</td>
+    <td>TRB</td>
+  </tr>
+  <tr>
+    <td>AST</td>
+    <td>STL</td>
+    <td>BLK</td>
+    <td>TOV</td>
+    <td>PF</td>
+  </tr>
+  <tr>
+    <td>PTS</td>
+    <td>X...</td>
+    <td>GAME</td>
+    <td>HOME.AWAY</td>
+    <td>TEAM</td>
+  </tr>
+  <tr>
+    <td>OPP</td>
+    <td>SEASON</td>
+    <td>seconds</td>
+    <td>minutes</td>
+    <td>ppm</td>
+  </tr>
+  <tr>
+    <td>TS.</td>
+    <td>eFG.</td>
+    <td>ORB.</td>
+    <td>DRB.</td>
+    <td>TRB.</td>
+  </tr>
+  <tr>
+    <td>AST.</td>
+    <td>STL.</td>
+    <td>BLK.</td>
+    <td>TOV.</td>
+    <td>USG.</td>
+  </tr>
+  <tr>
+    <td>ORtg</td>
+    <td>DRtg</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+</table>
+</br>
+<p>I'm sure these symbols don't mean much, but check out a few of the definitions on the <a href="http://www.basketball-reference.com/about/glossary.html" target="_blank"> basketball-reference glossary</a>. Not all of these variables are in the glossary and I will define each variable before they are used. Also, player information and salaries will be included later on, this only looks at box scores.</p>
+
+<p>Filters can be done with built in R features once the data has been saved as a data frame. The <a href="http://cran.r-project.org/web/packages/plyr/index.html">Plyr package</a> offers a great summarization tool that I’ll use to look at player stats over the course of a season and career. The basic and advanced data sets are joined under the variable 'fulldata'. Next, I can look at player averages within the dataset (which includes all 1985-2014 regular season NBA games) using the following code:</p>
+
+<p><i>player_per_game = ddply(fulldata, .(PLAYER), numcolwise(mean, na.rm = TRUE))</i></p>
+
+<ul>
+	<li><b>ddply</b> - Plyr function used to split data</li>
+	<li><b>fulldata</b> - Data frame being used</li>
+	<li><b>PLAYER</b> - Column on which we will split data</li>
+	<li><b>numcolwise</b> - Allow function to be applied onto column in data frame</li>
+	<li><b>mean</b> - Function to be applied to each column</li>
+	<li><b>na.rm=True</b> - Remove null values for missing data, such as free throw percentage when a player has no free throw attempts. Adjustment needed for season averages</li>
+</ul>
+
+<p>In all, I’ll organize the data 13 ways and save them as CSV files. The areas I aggregate on include player, team and home/away by career, season and game for salaries and statistics. Finally, each new data frame is written to a CSV file and I’m ready to go. Now, it will be quick to call an individaul file without having to re-run any of the calculations.</p>
+
+<p>Upcoming posts will involve specific analysis and should be a bit more interesting. Please be in touch if you would like more information on any of this work.</p>
+</br>
+<p>All work can be found on <a href="https://github.com/coreygarvey/bball" target="_blank">github</a>.</p>
+<p>Please email slamstats@gmail.com with any thoughts or questions.</p>

@@ -1,0 +1,22 @@
+<p>Originally, I assumed I could easily download seasons of data but stopped trying once I realized I could get it myself. Some sites contain detailed NBA data sets, such as <a href="http://basketballvalue.com/downloads.php" target="_blank">this one</a>, but it doesn’t have current statistics and there is additional information I can find elsewhere. The best place I have found for basketball data is <a href="http://www.basketball-reference.com/" target="_blank">basketball-reference.com</a>. All data on its parent site, <a href="http://www.sports-reference.com/" target="_blank">sports-reference.com</a>, is really top notch.</p>
+
+<p>My first goal here, as in any analysis, is to see how much data I have. This applies to the amount of games and seasons as well as the statistics recorded for each. The breadth of the data will dictate the scope of my initial goals. A bit of searching leads to the following:</p>
+
+<ul>
+	<li><a href="http://www.basketball-reference.com/players/a/anthoca01.html" target="_blank">Player stats and information</a></li>
+	<li><a href="http://www.basketball-reference.com/boxscores/pbp/201401240NYK.html" target="_blank">Play by play</a></li>
+	<li><a href="http://www.basketball-reference.com/boxscores/201401240NYK.html" target="_blank">Box scores</a></li>
+	<li><a href="http://www.basketball-reference.com/boxscores/shot-chart/201401240NYK.html" target="_blank">Shot charts</a></li>
+	<li><a href="http://www.basketball-reference.com/teams/NYK/" target="_blank">Franchise history and results</a></li>
+	<li><a href="http://www.basketball-reference.com/leagues/NBA_2014_games.html" target="_blank">Schedule and results</a></li>
+</ul>
+
+
+<p>After 2000, the first two are the only necessary data sets listed as the bottom 4 can be built with the play by play. Prior to 2000, the only data available are box scores. The shot chart and play by play are somewhat redundant but I’ll opt for the practice scraping pages and scrape as much as I can from the site to avoid the calculations. Before the 1985-1986 season, the data only contains field goals made, free throws taken and free throws made so I'll focus on post 1986 basketball to start.</p>
+
+<p>This data gives me a lot of possibilities for analysis. In addition to the game information which is nicely broken down in box scores and play by play analysis, I have information about all the players who have played in these games. The tracked statistics are defined in the <a href="http://www.basketball-reference.com/about/glossary.html" target="_blank">basketball reference glossary</a>. Additionally, the player information contains height, weight, college, high school, birthplace, twitter handle and salary for each season in the league. This brings up some interesting avenues of analysis that we'll look into later.</p>
+
+<p>I’ve decided to write this script in Ruby, a different choice for me but ultimately very quick and useful. I’ve used the <a href="http://docs.python-requests.org/en/latest/" target="_blank">Python requests library</a> and <a href="http://www.crummy.com/software/BeautifulSoup/" target="_blank">BeautifulSoup</a> to scape using Python but Nokogiri on Ruby, as outlined in <a href="http://railscasts.com/episodes/190-screen-scraping-with-nokogiri" target="_blank">this video</a>, was recommended by a friend. Along with mechanize, explained in the <a href="http://railscasts.com/episodes/191-mechanize" target="_blank">following episode</a>, I was able to start pulling numbers from online tables into CSV files in no time. For the shot chart, I grabbed a large chunk of html that I’ll process to find specific shot positions. Possibly the best pick up from these videos is <a"http://selectorgadget.com/" target="_blank">SelectorGadget</a> for point and click CSS selection, a huge help when navigating through the DOM to find data. I’ll cover specifics of this work in upcoming articles.</p>
+
+<p>All work can be found on <a href="https://github.com/coreygarvey/bball/tree/master/scripts" target="_blank">github</a>.</p>
+<p>Please email slamstats@gmail.com with any thoughts or questions.</p>
