@@ -12,9 +12,45 @@
 </ul>
 
 
-<p>After 2000, the first two are the only necessary data sets listed as the bottom 4 can be built with the play by play. Prior to 2000, the only data available are box scores. The shot chart and play by play are somewhat redundant but I’ll opt for the practice scraping pages and scrape as much as I can from the site to avoid the calculations. Before the 1985-1986 season, the data only contains field goals made, free throws taken and free throws made so I'll focus on post 1986 basketball to start.</p>
+<p>After 2000, the first two are the only necessary data sets listed as the bottom 4 can be built with the play by play. Prior to 2000, the only data available are box scores. The shot chart and play by play are somewhat redundant but I’ll opt for the practice scraping pages and scrape as much as I can from the site to avoid the calculations. 
 
-<p>This data gives me a lot of possibilities for analysis. In addition to the game information which is nicely broken down in box scores and play by play analysis, I have information about all the players who have played in these games. The tracked statistics are defined in the <a href="http://www.basketball-reference.com/about/glossary.html" target="_blank">basketball reference glossary</a>. Additionally, the player information contains height, weight, college, high school, birthplace, twitter handle and salary for each season in the league. This brings up some interesting avenues of analysis that we'll look into later.</p>
+
+<p>Before the 1985-86 season, the data does not contain steals, assists, or turnovers. Furthermore, there are no play by play stats so there are not plus minus calculations, which will be very important in later analyses.</p>
+
+<h4>Boxscore Pre-1985-86</h4>
+<div><img src="/assets/pre86basic.png"></div>
+
+</br>
+<p>Full statistics, seen below, can be found starting in 1985-86 although there is no play-by-play information.</p>
+<h4>Boxscore 1986-2000 (Basic)</h4>
+<div><img src="/assets/post86pre00basic.png"></div>
+
+</br>
+<p>Also beginning in 1986, advanced statistics are provided which give tell the percentage chance a player will make a particular play, such as an assist, when on the floor. Statistic definitions can be found on the <a href="http://www.basketball-reference.com/about/glossary.html" target="_blank"> basketball-reference glossary</a>. These numbers do not depend on play-by-play and have not since changed.</p>
+
+<h4>Boxscore Post-1986 (Advanced)</h4>
+<div><img src="/assets/post86pre00advanced.png"></div>
+
+</br>
+<p>Starting in the 2000-2001 season, Basketball Reference has play by play and shot chart details as seen below.</p>
+
+<h4>Play-by-play Post-2000</h4>
+<div><img src="/assets/playbyplay.png"></div>
+
+</br>
+<p>Basketball Reference has visulized shot charts. I'll scrape these pages to determine the location of player shots and connect these shots to play by play information.</p>
+
+<h4>Team Shot Chart Post-2000</h4>
+<div><img src="/assets/shotchart.png"></div>
+
+</br>
+<p>I'll use the raw play by play data to look at the contribution to a team's success for each player. The basic boxscore data now cotains plus minus numbers, although I will ultimately need to calculate these from the play by play information.</p>
+
+<h4>Boxscore Post-2000 (Basic)</h4>
+<div><img src="/assets/post00basic.png"></div>
+
+</br>
+<p>This data gives me a lot of possibilities for analysis. In addition to the game information which is nicely broken down in box scores and play by play analysis, I have information about all the players who have played in these games. Player information contains height, weight, college, high school, birthplace, twitter handle and salary for each season in the league. This brings up some interesting avenues of analysis that we'll look into later.</p>
 
 <p>I’ve decided to write this script in Ruby, a different choice for me but ultimately very quick and useful. I’ve used the <a href="http://docs.python-requests.org/en/latest/" target="_blank">Python requests library</a> and <a href="http://www.crummy.com/software/BeautifulSoup/" target="_blank">BeautifulSoup</a> to scape using Python but Nokogiri on Ruby, as outlined in <a href="http://railscasts.com/episodes/190-screen-scraping-with-nokogiri" target="_blank">this video</a>, was recommended by a friend. Along with mechanize, explained in the <a href="http://railscasts.com/episodes/191-mechanize" target="_blank">following episode</a>, I was able to start pulling numbers from online tables into CSV files in no time. For the shot chart, I grabbed a large chunk of html that I’ll process to find specific shot positions. Possibly the best pick up from these videos is <a"http://selectorgadget.com/" target="_blank">SelectorGadget</a> for point and click CSS selection, a huge help when navigating through the DOM to find data. I’ll cover specifics of this work in upcoming articles.</p>
 
