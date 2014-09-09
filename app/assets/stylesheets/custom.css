@@ -18,6 +18,7 @@
 
 
 
+
 article,
 aside,
 details,
@@ -6816,11 +6817,14 @@ a.label:hover, a.label:focus, a.badge:hover, a.badge:focus {
 /* line 5, /Users/cgarvey/Documents/Projects/RailsProjects/slamstats/app/assets/stylesheets/custom.css.scss */
 html {
   overflow-y: scroll;
+  position: relative;
+  min-height: 100%;
 }
 
 /* line 9, /Users/cgarvey/Documents/Projects/RailsProjects/slamstats/app/assets/stylesheets/custom.css.scss */
 body {
   padding-top: 60px;
+  margin-bottom: 60px;
 }
 
 /* line 13, /Users/cgarvey/Documents/Projects/RailsProjects/slamstats/app/assets/stylesheets/custom.css.scss */
@@ -6945,4 +6949,12 @@ footer ul li {
   padding: 17px 0 0;
   font-size: 15px;
   font-style: italic;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width:100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
 }
