@@ -4,7 +4,8 @@ class ArticlesController < ApplicationController
   end
 
   def index
-  	@articles = Article.all
+  	@general_articles = Article.general.order('created_at asc')
+    @basketball_articles = Article.basketball.order('created_at asc')
   end
 
   def new

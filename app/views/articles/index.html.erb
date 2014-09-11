@@ -1,10 +1,19 @@
 <% provide(:title, 'All articles') %>
 <h3>Articles</h3>
 
+<h5>General</h5>
 <ul class="articles" style="list-style: none;">
-  <% @articles.each do |article| %>
+  <% @general_articles.each do |article| %>
     <li>
-      <%= link_to article.title, article %>
+      <%= article.created_at.in_time_zone("Pacific Time (US & Canada)").strftime("%m/%d") %> - <%= link_to article.title, article %>
+    </li>
+  <% end %>
+</ul>
+<h5>Basketball</h5>
+<ul class="articles" style="list-style: none;">
+  <% @basketball_articles.each do |article| %>
+    <li>
+      <%= article.created_at.in_time_zone("Pacific Time (US & Canada)").strftime("%m/%d") %> - <%= link_to article.title, article %>
     </li>
   <% end %>
 </ul>
