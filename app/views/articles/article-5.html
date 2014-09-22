@@ -54,15 +54,15 @@
 		  <tr>
 		    <td class="col-xs-2">Draft</td>
 		    <td class="col-xs-4">1st in 1997 to San Antonio Spurs</td>
-		    <td class="col-xs-4">5th in 1995 to San Antonio Spurs</td>
+		    <td class="col-xs-4">5th in 1995 to Minnesota Timberwolves</td>
 		  </tr>
 		</tbody>
 	</table>
 </div>
 
-<p>The above information shows us how similar the two are. They are teh same height and age but Duncan outweighs KG by nearly 30 pounds. Tim also spent four years at Wake Forest University, accounting for Garnett’s head start in the league after skipping college. His youth may have lowered him to fifth pick overall, but as we will see, it was definitely the right financial decision for an athlete of his caliber. KG was also quite accustomed to being away from home after playing high school ball in Chicago, which may have helped with his transition to the NBA.</p>
+<p>The bio information shows us how similar the two are although Duncan outweighs KG about 30 lbs. Tim also spent four years at Wake Forest, accounting for Garnett’s head start in the league after skipping college. KG's youth may have lowered him to fifth pick overall, but as we will see, it was the right financial decision for an athlete of his caliber. KG had been away from home after playing high school ball in Chicago, which may have helped with his transition to the NBA.</p>
 
-<p>Having little knowledge of each player’s specific career stats, I’ll start there. I will filter for each player’s career, regular season statistics using the 'player_per_game.csv' table. In the <a href="http://www.slamstats.net/articles/4">last article</a>, I described the <a href="https://github.com/coreygarvey/bball/blob/master/analysis/processing.R">R script</a> I wrote for my initial data processing. This processing included slicing my data (all regular season box scores since 1985-86) in a number of ways. I saved these different slices as CSV files which I now read whenever they are needed. After the filter and grabbing only a few particular columns, I have the following:</p> 
+<p>Having little knowledge of each player’s specific career stats, I’ll start there. I will filter for each player’s career regular season statistics using the 'player_per_game.csv' table. In the <a href="http://www.slamstats.net/articles/4">last article</a>, I described the <a href="https://github.com/coreygarvey/bball/blob/master/analysis/processing.R">R script</a> I wrote for my initial data processing. This processing included slicing my data (all regular season box scores since 1985-86) in a number of ways. I saved these different slices as CSV files which I now read whenever they are needed. After the filter and grabbing only a few particular columns, I have the following:</p> 
 
 <div class="row">
 	<table class="table table-striped table-condensed">
@@ -141,6 +141,15 @@
 
 <p>The numbers are incredibly similar but there are some clear differences. Duncan plays like more of a "big man", bringing down almost one more rebound and taking two more free throws per night. Not surprising still, Duncan averages more than half a block more than KG, but the Big Ticket brings some additional skills to the table in terms of assists, steals and free throw percentage. KGs lighter, more agile frame make him an extremely dynamic player, Duncan's weight gives him a true presence down low.</p>
 
+<p>Below is a quick look at the salary data I'll get to in the next part (check out Garnett's payday in '99). I have set up my script to save all files to CSV which are read by my application onto the blog. There is still some work to be done formatting but this setup will save plenty of time in future. I'm doing all of this work to allow for easy analysis of future players.
+
+<h4>Database Notes</h4>
+<p>Having put the data on a mysql database on my local machine, I'm going to make changes to my R script to pull from this database rather than CSV files. When I get a chance to build out the front end, the decisions made by the user will invoke queries and analysis. The data will sit on the application's hosting server or a seperate hosting server in a SQL database or Hadoop distribution.</p>
+
+
+<p>All work can be found on <a href="https://github.com/coreygarvey/bball" target="_blank">github</a>.</p>
+<p>Please email slamstats@gmail.com with any thoughts or questions.</p>
+
 <div id="duncan_table"></div>
 <div id="garnett_table"></div>
 
@@ -148,10 +157,13 @@
 $(function() {
   $('#duncan_table').CSVToTable('/assets/csv/duncanvsgarnett/duncati01.csv',
   	{ 
-       tdClass: 'col-xs-2'
+       tdClass: 'col-xs-1'
     }
  	);
 
-  $('#garnett_table').CSVToTable('/assets/csv/duncanvsgarnett/garneke01.csv');
+  $('#garnett_table').CSVToTable('/assets/csv/duncanvsgarnett/garneke01.csv',
+  	{ 
+       tdClass: 'col-xs-1'
+    });
 });
 </script>
