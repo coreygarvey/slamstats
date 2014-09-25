@@ -1,8 +1,54 @@
 <% provide(:title, "SlamStats - Basketball Analaysis") %>
 
-<div id="article-container">
-<h1><%= @article.title %></h1>
-<h2><%= @article.created_at.in_time_zone("Pacific Time (US & Canada)").strftime("%m.%d.%Y") %></h2>
+<div id="landing-container">
+	<div class="row landing-top">
+		<div class="col-xs-2">
+			<div class="art1-title"><%= link_to @art1.title, @art1 %></div>
+			<div class="art1-description">Breaking down the best power forwards of the last 20 years</div>
+		</div>
+		<div class="col-xs-7">
+			
+			<div style="text-align:center;"><img class="art1-image" src="/assets/duncan.jpg"><img class="art1-image" src="/assets/garnett.jpg"></div>
+			
+					</div>
+		
+		<div class="col-xs-3">
+			<div class="stats_title">Game FG% since 1986 (min 15 FGA)</div>
+			<div class="stats_table"></div>
 
-<%= raw(@article.body) %>
+		</div>
+	</div>
+	<div class="row landing-middle">
+		<div class="col-xs-5">
+			<div class="art2-cat">General</div>
+			<div class="art2-title"><%= link_to @art2.title, @art2 %></div>
+			<div class="art2-date"><%= @art2.created_at.in_time_zone("Pacific Time (US & Canada)").strftime("%b %d") %></div>
+		</div>
+		<div class="col-xs-4">
+			<div class="art3-cat">Data</div>
+			<div class="art3-title"><%= link_to @art3.title, @art3 %></div>
+			<div class="art3-date"><%= @art3.created_at.in_time_zone("Pacific Time (US & Canada)").strftime("%b %d") %></div>
+		</div>
+		<div class="col-xs-3">
+			<div class="art4-cat">Great Article</div>
+			<div class="art4-title"><a href="http://www.82games.com/comm30.htm" target="_blank">Dan Rosenbaum's 2004 Adjusted +/-</a></div>
+		</div>
+	</div>
+	<div class="row landing-bottom ">
+		<div class="col-xs-6"></div>
+		<div class="col-xs-6"></div>
+	</div>
+
 </div>
+
+<script>
+$(function() {
+  $('.stats_table').CSVToTable('/assets/csv/front_stats/fgp.csv',
+  	{ 
+       thClass: 'stats_table_cell',
+       tdClass: 'stats_table_cell',
+       loadingText: 'Loading...'
+    }
+ 	);
+});
+</script>
